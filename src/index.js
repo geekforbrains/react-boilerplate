@@ -1,19 +1,13 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-import { renderRoutes } from './util/router'
-import Nav from './components/nav'
+import store from './store'
+import App from './app'
 
-const App = () => (
-  <Router>
-    <div>
-      <Nav />
-      <Switch>
-        {renderRoutes()}
-      </Switch>
-    </div>
-  </Router>
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 )
-
-ReactDOM.render(<App />, document.getElementById('root'))
