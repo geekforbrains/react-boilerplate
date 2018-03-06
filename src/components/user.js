@@ -2,16 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { changeName } from '../store/actions'
 
+const mapStateToProps = state => {
+  return {user: state.user}
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    onChangeName: name => {
-      dispatch(changeName(name))
+    onChangeName: e => {
+      dispatch(changeName(e.target.value))
     }
   }
 }
 
-const User = ({match}) => (
-  <h1>User {match.params.id}</h1>
+const User = ({onChangeName, user}) => (
+  <div>
+    <h1>User {user.name}</h1>
+    <input type='text' onChange={onChangeName} value={user.name} />
+  </div>
 )
 
-export default User
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(User)

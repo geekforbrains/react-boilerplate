@@ -5,8 +5,10 @@ const mapStateToProps = state => {
   return {user: state.user}
 }
 
-const Home = connect(mapStateToProps)((props) =>
-  <h1>Home {props.user.name}</h1>
+const Home = ({user}) => (
+  <h1>Home {user.name}</h1>
 )
 
-export default Home
+export default connect(
+  mapStateToProps
+)(Home)
